@@ -6,6 +6,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Ageable;
+import org.bukkit.entity.Breedable;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -57,6 +58,9 @@ public class EssentialsEntityListener implements Listener {
                 if (ess.getSettings().isMilkBucketEasterEggEnabled()
                     && hand != null && hand.getType() == Material.MILK_BUCKET) {
                     ((Ageable) eDefend).setBaby();
+                    if (ess.getSettings().isMilkBucketEasterEggPermanent() && eDefend instanceof Breedable) {
+                        ((Breedable) eDefend).setAgeLock(true);
+                    }
                     hand.setType(Material.BUCKET);
                     attacker.getBase().setItemInHand(hand);
                     attacker.getBase().updateInventory();
