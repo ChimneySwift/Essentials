@@ -193,6 +193,7 @@ public class PermissionsHandler implements IPermissionsHandler {
     }
 
     private void initContexts() {
+        registerContext("essentials:godmode", player -> Collections.singleton(String.valueOf(ess.getUser(player).isGodModeEnabled())), () -> ImmutableSet.of("true", "false"));
         registerContext("essentials:afk", player -> Collections.singleton(String.valueOf(ess.getUser(player).isAfk())), () -> ImmutableSet.of("true", "false"));
         registerContext("essentials:muted", player -> Collections.singleton(String.valueOf(ess.getUser(player).isMuted())), () -> ImmutableSet.of("true", "false"));
         registerContext("essentials:vanished", player -> Collections.singleton(String.valueOf(ess.getUser(player).isHidden())), () -> ImmutableSet.of("true", "false"));
